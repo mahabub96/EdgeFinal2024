@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}To-Do List Manager{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800">
+    <nav class="bg-blue-600 p-4">
+        <div class="container mx-auto flex justify-between">
+            <a href="{% url 'task_list' %}" class="text-white font-bold">To-Do List</a>
+            <div>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'logout' %}" class="text-white hover:underline">Logout</a>
+                {% else %}
+                    <a href="{% url 'login' %}" class="text-white hover:underline mr-4">Login</a>
+                    <a href="{% url 'register' %}" class="text-white hover:underline">Register</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+    <div class="container mx-auto p-6">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>
